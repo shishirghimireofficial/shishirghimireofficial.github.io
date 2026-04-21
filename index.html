@@ -492,31 +492,11 @@
       font-size:.92rem;
     }
 
-    @media (max-width:1080px){
-      .hero-grid, .case-hero, .grid-2, .grid-3, .grid-4, .contact-box{
-        grid-template-columns:1fr;
-      }
-      .hero-visual{justify-content:flex-start}
-      .contact-actions{justify-content:flex-start}
-      .inline-metrics{grid-template-columns:1fr}
-    }
+    
 
-    @media (max-width:720px){
-      .topbar-inner{flex-direction:column;align-items:flex-start;padding:14px 0}
-      .nav{justify-content:flex-start}
-      .hero{padding:52px 0 24px}
-      .hero-grid{min-height:auto}
-      .card, .case-card, .proof-card, .stat-card, .contact-box{padding:20px}
-      .mini-stat-row, .proof-gallery{grid-template-columns:1fr}
-    }
+    
 
-    @media (max-width:560px){
-      .container{width:min(var(--max), calc(100% - 20px))}
-      .btn, .contact-pill{width:100%}
-      .hero-actions, .contact-actions{flex-direction:column}
-      .portrait-wrap{padding:14px}
-      .portrait-label{left:28px;bottom:28px}
-    }
+    
   
     .reveal{
       opacity:0;
@@ -1527,6 +1507,241 @@
       }
     }
 
+  
+    /* --- consolidated responsive fixes --- */
+    @media (max-width: 1024px){
+      .hero-grid,
+      .case-hero,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .contact-box{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding:48px 0 24px;
+      }
+
+      .hero-grid{
+        min-height:auto;
+        gap:24px;
+      }
+
+      .hero-visual{
+        order:-1;
+        justify-content:center;
+      }
+
+      .portrait-wrap{
+        width:min(100%, 360px);
+        margin:0 auto;
+      }
+
+      .contact-actions{
+        justify-content:flex-start;
+      }
+    }
+
+    @media (max-width: 768px){
+      html, body{
+        overflow-x:hidden;
+      }
+
+      .container{
+        width:min(var(--max), calc(100% - 20px));
+      }
+
+      .topbar-inner{
+        min-height:auto;
+        padding:14px 0;
+        align-items:flex-start;
+        flex-direction:column;
+        gap:12px;
+      }
+
+      .brand{
+        font-size:.84rem;
+        letter-spacing:.12em;
+      }
+
+      .nav{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(3, minmax(0,1fr));
+        gap:8px;
+        justify-content:stretch;
+      }
+
+      .nav a{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        min-height:40px;
+        padding:8px 10px;
+        border-radius:999px;
+        background:rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.08);
+        font-size:.82rem;
+        text-align:center;
+      }
+
+      .hero{
+        padding:28px 0 16px;
+      }
+
+      .eyebrow{
+        width:100%;
+        justify-content:center;
+        text-align:center;
+        margin-bottom:16px;
+        font-size:.72rem;
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2.3rem, 12vw, 3.8rem) !important;
+        line-height:.95;
+        margin-bottom:14px;
+      }
+
+      .hero-copy p{
+        max-width:100%;
+        font-size:.96rem;
+        margin-bottom:20px;
+      }
+
+      .hero-actions,
+      .contact-actions{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:10px;
+        width:100%;
+      }
+
+      .btn,
+      .contact-pill{
+        width:100%;
+        min-height:48px;
+      }
+
+      .inline-metrics,
+      .mini-stat-row,
+      .proof-gallery{
+        grid-template-columns:1fr;
+      }
+
+      .inline-metrics{
+        gap:10px;
+      }
+
+      section{
+        padding:28px 0;
+      }
+
+      .section-head{
+        margin-bottom:16px;
+      }
+
+      .section-head h2{
+        font-size:clamp(1.55rem, 8vw, 2.2rem);
+      }
+
+      .section-head p{
+        font-size:.94rem;
+      }
+
+      .card,
+      .case-card,
+      .proof-card,
+      .stat-card,
+      .contact-box{
+        padding:18px !important;
+        border-radius:22px;
+      }
+
+      .big-number{
+        font-size:clamp(2.25rem, 13vw, 3.6rem);
+      }
+
+      .company-links{
+        display:grid;
+        grid-template-columns:1fr;
+      }
+
+      .company-link{
+        width:100%;
+        justify-content:flex-start;
+      }
+
+      .account-head{
+        align-items:center;
+      }
+
+      .account-logo-wrap{
+        width:52px;
+        height:52px;
+        min-width:52px;
+        border-radius:14px;
+      }
+
+      .account-name{
+        font-size:1.08rem;
+      }
+
+      .portrait-wrap{
+        width:min(100%, 320px);
+        padding:12px;
+        border-radius:26px;
+      }
+
+      .portrait{
+        border-radius:18px;
+      }
+
+      .portrait-wrap::after{
+        inset:auto 12px 12px 12px;
+        border-radius:0 0 18px 18px;
+        height:90px;
+      }
+
+      .portrait-label{
+        left:22px;
+        right:22px;
+        bottom:18px;
+      }
+
+      .portrait-label span{
+        font-size:.82rem;
+      }
+
+      .wave-svg{
+        height:36%;
+        inset:auto -22% 8% -22%;
+      }
+
+      .page-waves{
+        opacity:.42;
+      }
+    }
+
+    @media (max-width: 430px){
+      .nav{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+
+      .hero-copy h1{
+        font-size:clamp(2rem, 13vw, 3rem) !important;
+      }
+
+      .eyebrow{
+        font-size:.68rem;
+      }
+
+      .big-number{
+        font-size:clamp(2rem, 14vw, 3rem);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1716,7 +1931,7 @@
               <h3>
                 <a class="account-name" href="https://www.instagram.com/dramahub_1m/" target="_blank" rel="noopener noreferrer">@dramahub_1m</a>
               </h3>
-              <p class="muted">BUMP-focused short-form posting built around curiosity, pacing, and viewer response.</p>
+              <p class="muted">Drama-focused clips with strong hook value, subtitles, and Instagram-first presentation.</p>
             </div>
           </div>
 
