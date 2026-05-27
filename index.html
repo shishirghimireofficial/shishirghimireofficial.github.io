@@ -187,7 +187,7 @@
 
     .inline-metrics{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
+      grid-template-columns:repeat(4, minmax(0,1fr));
       gap:14px;
       max-width:760px;
     }
@@ -492,12 +492,6 @@
       font-size:.92rem;
     }
 
-    
-
-    
-
-    
-  
     .reveal{
       opacity:0;
       transform:translateY(34px);
@@ -653,7 +647,6 @@
       }
     }
 
-
     .hero-waves{
       position:absolute;
       inset:0;
@@ -700,39 +693,20 @@
       z-index:0;
     }
 
-    .hero-copy h1{
-      max-width:680px;
-    }
-
-    .hero-copy p{
-      max-width:560px;
-    }
-
-    .hero-grid{
-      gap:26px;
-    }
+    .hero-copy h1{max-width:680px;}
+    .hero-copy p{max-width:560px;}
+    .hero-grid{gap:26px;}
 
     @media (max-width:1080px){
-      .wave-svg{
-        height:56%;
-        inset:auto -10% -2% -10%;
-      }
+      .wave-svg{height:56%;inset:auto -10% -2% -10%;}
     }
-
     @media (max-width:720px){
-      .wave-svg{
-        height:46%;
-        inset:auto -18% 8% -18%;
-      }
-      .hero-copy h1{
-        font-size:clamp(2.5rem, 13vw, 4.2rem);
-      }
+      .wave-svg{height:46%;inset:auto -18% 8% -18%;}
+      .hero-copy h1{font-size:clamp(2.5rem, 13vw, 4.2rem);}
     }
-
     @media (prefers-reduced-motion: reduce){
       .wave-line{animation:none !important}
     }
-
 
     .page-waves{
       position:fixed;
@@ -776,29 +750,16 @@
       to{stroke-dashoffset:-760}
     }
 
-    body > *{
-      position:relative;
-      z-index:1;
-    }
-
-    .topbar{
-      z-index:1001;
-    }
-
-    .hero-waves{
-      opacity:.42;
-    }
-
-    .wave-svg{
-      filter:drop-shadow(0 0 22px rgba(74,144,255,.16));
-    }
+    body > *{position:relative;z-index:1;}
+    .topbar{z-index:1001;}
+    .hero-waves{opacity:.42;}
+    .wave-svg{filter:drop-shadow(0 0 22px rgba(74,144,255,.16));}
 
     .wave-line{
       stroke-width:1.25;
       stroke-dasharray:10 18;
       animation:waveDrift 30s linear infinite;
     }
-
     .wave-line.w2{animation-duration:38s}
     .wave-line.w3{animation-duration:44s}
     .wave-line.w4{animation-duration:48s}
@@ -914,171 +875,6 @@
       line-height:1.45;
     }
 
-    @media (max-width:1080px){
-      .bump-banner{
-        min-height:300px;
-      }
-    }
-
-    @media (max-width:720px){
-      .bump-banner{
-        min-height:240px;
-        padding:20px;
-      }
-      .bump-banner-logo{
-        width:48px;
-        height:48px;
-        border-radius:16px;
-      }
-    }
-
-    @media (max-width:720px){
-      .page-waves{
-        opacity:.56;
-      }
-      .page-wave-line{
-        stroke-width:1.1;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .page-wave-line{animation:none !important}
-    }
-
-
-    .account-head{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:10px;
-    }
-
-    .account-logo{
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      object-fit:cover;
-      flex:0 0 auto;
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 10px 30px rgba(0,0,0,.24);
-      background:#151923;
-    }
-
-    .account-head-text{
-      min-width:0;
-    }
-
-    .account-head-text h3{
-      margin-bottom:4px;
-    }
-
-    @media (max-width:720px){
-      .account-logo{
-        width:50px;
-        height:50px;
-        border-radius:16px;
-      }
-    }
-
-
-    .case-card{
-      background:
-        linear-gradient(180deg, rgba(7,9,13,.78), rgba(7,9,13,.9)),
-        url("bump-bg.jpg") center/cover no-repeat;
-      border:1px solid rgba(255,255,255,.14);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .case-card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 12%, rgba(78,122,255,.12), transparent 22%),
-        linear-gradient(180deg, rgba(7,9,13,.08), rgba(7,9,13,.18));
-      pointer-events:none;
-      z-index:0;
-    }
-
-    .case-card > *{
-      position:relative;
-      z-index:1;
-    }
-
-    .company-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin:18px 0 18px;
-    }
-
-    .company-link{
-      min-height:44px;
-      padding:10px 16px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      color:#fff;
-      font-weight:700;
-      font-size:.9rem;
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-      backdrop-filter:blur(10px);
-    }
-
-    .company-link:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.2);
-    }
-
-    .account-head{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:12px;
-    }
-
-    .account-logo-wrap{
-      flex:0 0 auto;
-      width:56px;
-      height:56px;
-      border-radius:18px;
-      overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:0 0 0 1px rgba(255,255,255,.04), 0 10px 30px rgba(0,0,0,.24);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .account-logo{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      background:#151923;
-    }
-
-    .account-logo.contain{
-      object-fit:contain;
-      padding:4px;
-      background:#151923;
-    }
-
-    @media (max-width:720px){
-      .account-logo-wrap{
-        width:50px;
-        height:50px;
-        border-radius:16px;
-      }
-    }
-
-
     .account-head{
       display:flex;
       align-items:center;
@@ -1143,605 +939,112 @@
       display:block;
     }
 
-    @media (max-width:720px){
-      .account-logo-wrap{
-        width:56px;
-        height:56px;
-        min-width:56px;
-      }
-    }
+    .nav{row-gap:10px;}
+    .hero-copy{width:100%;}
+    .hero-copy h1{text-wrap:balance;}
+    .hero-copy p,.section-head p,.card p,.proof-card p,.contact-box p{text-wrap:pretty;}
+    .case-card,.stat-card,.card,.proof-card,.contact-box,.inline-metric{min-width:0;}
 
-  
-    /* --- mobile responsiveness polish --- */
-    .nav{
-      row-gap:10px;
-    }
-
-    .hero-copy{
-      width:100%;
-    }
-
-    .hero-copy h1{
-      text-wrap:balance;
-    }
-
-    .hero-copy p,
-    .section-head p,
-    .card p,
-    .proof-card p,
-    .contact-box p{
-      text-wrap:pretty;
-    }
-
-    .case-card,
-    .stat-card,
-    .card,
-    .proof-card,
-    .contact-box,
-    .inline-metric{
-      min-width:0;
-    }
-
-    @media (max-width: 960px){
-      .topbar{
-        position:sticky;
-      }
-
-      .topbar-inner{
-        min-height:auto;
-        padding:14px 0;
-        align-items:flex-start;
-      }
-
-      .nav{
-        width:100%;
-        justify-content:flex-start;
-      }
-
-      .hero{
-        padding:42px 0 22px;
-      }
-
-      .hero-grid{
-        min-height:auto;
-        grid-template-columns:1fr;
-        gap:22px;
-      }
-
-      .hero-visual{
-        order:-1;
-        justify-content:center;
-      }
-
-      .portrait-wrap{
-        width:min(100%, 360px);
-      }
-
-      .inline-metrics{
-        grid-template-columns:repeat(3, minmax(0,1fr));
-      }
-
-      .case-hero{
-        grid-template-columns:1fr;
-      }
-
-      .grid-2{
-        grid-template-columns:1fr;
-      }
-
-      .contact-box{
-        grid-template-columns:1fr;
-      }
-
-      .contact-actions{
-        justify-content:flex-start;
-      }
-    }
-
-    @media (max-width: 720px){
-      html, body{
-        overflow-x:hidden;
-      }
-
-      .container{
-        width:min(var(--max), calc(100% - 20px));
-      }
-
-      .topbar-inner{
-        gap:12px;
-      }
-
-      .brand{
-        font-size:.84rem;
-        letter-spacing:.12em;
-      }
-
-      .nav{
-        display:grid;
-        grid-template-columns:repeat(3, minmax(0,1fr));
-        gap:8px;
-      }
-
-      .nav a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        min-height:40px;
-        padding:8px 10px;
-        border-radius:999px;
-        background:rgba(255,255,255,.04);
-        border:1px solid rgba(255,255,255,.08);
-        font-size:.82rem;
-        text-align:center;
-      }
-
-      .hero{
-        padding:28px 0 16px;
-      }
-
-      .hero-grid{
-        gap:18px;
-      }
-
-      .eyebrow{
-        width:100%;
-        justify-content:center;
-        text-align:center;
-        font-size:.72rem;
-        letter-spacing:.11em;
-        padding:10px 12px;
-        margin-bottom:16px;
-      }
-
-      .hero-copy h1{
-        font-size:clamp(2.35rem, 13vw, 4rem) !important;
-        line-height:.95;
-        margin-bottom:14px;
-      }
-
-      .hero-copy p{
-        font-size:.98rem;
-        max-width:100%;
-        margin-bottom:20px;
-      }
-
-      .hero-actions{
-        gap:10px;
-        margin-bottom:22px;
-      }
-
-      .btn{
-        width:100%;
-        min-height:48px;
-      }
-
-      .inline-metrics{
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-
-      .inline-metric{
-        padding:16px;
-        border-radius:18px;
-      }
-
-      .inline-metric strong{
-        font-size:1.45rem;
-      }
-
-      section{
-        padding:28px 0;
-      }
-
-      .section-head{
-        margin-bottom:16px;
-      }
-
-      .section-head h2{
-        font-size:clamp(1.55rem, 8vw, 2.2rem);
-        margin-bottom:8px;
-      }
-
-      .section-head p{
-        font-size:.94rem;
-      }
-
-      .card,
-      .case-card,
-      .proof-card,
-      .stat-card,
-      .contact-box{
-        padding:18px !important;
-        border-radius:22px;
-      }
-
-      .bump-brand{
-        width:100%;
-        justify-content:flex-start;
-        padding:10px 12px;
-        margin-bottom:12px;
-      }
-
-      .label{
-        margin-bottom:10px;
-        font-size:.75rem;
-      }
-
-      .big-number{
-        font-size:clamp(2.25rem, 14vw, 3.8rem);
-        line-height:.92;
-        margin-bottom:12px;
-      }
-
-      .company-links{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-
-      .company-link{
-        width:100%;
-        justify-content:flex-start;
-      }
-
-      .mini-stat-row{
-        grid-template-columns:1fr;
-        gap:10px;
-        margin:14px 0;
-      }
-
-      .mini-stat{
-        padding:12px 10px;
-      }
-
-      .account-head{
-        align-items:center;
-      }
-
-      .account-logo-wrap{
-        width:52px;
-        height:52px;
-        min-width:52px;
-        border-radius:14px;
-      }
-
-      .account-name{
-        font-size:1.1rem;
-        margin-bottom:4px;
-      }
-
-      .account-head-text p{
-        font-size:.92rem;
-      }
-
-      .proof-main{
-        margin:12px 0 10px;
-      }
-
-      .proof-gallery{
-        grid-template-columns:1fr;
-        gap:10px;
-      }
-
-      .contact-box h2{
-        font-size:clamp(1.6rem, 10vw, 2.4rem);
-      }
-
-      .contact-actions{
-        display:grid;
-        grid-template-columns:1fr;
-        width:100%;
-      }
-
-      .contact-pill{
-        width:100%;
-        text-align:center;
-      }
-
-      .portrait-wrap{
-        width:min(100%, 320px);
-        margin:0 auto;
-        padding:12px;
-        border-radius:26px;
-      }
-
-      .portrait{
-        border-radius:18px;
-      }
-
-      .portrait-wrap::after{
-        inset:auto 12px 12px 12px;
-        border-radius:0 0 18px 18px;
-        height:92px;
-      }
-
-      .portrait-label{
-        left:22px;
-        bottom:18px;
-        right:22px;
-      }
-
-      .portrait-label strong{
-        font-size:.96rem;
-      }
-
-      .portrait-label span{
-        font-size:.82rem;
-      }
-
-      .wave-svg{
-        height:38%;
-        inset:auto -24% 8% -24%;
-      }
-
-      .page-waves{
-        opacity:.46;
-      }
-    }
-
-    @media (max-width: 420px){
-      .nav{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .hero-copy h1{
-        font-size:clamp(2.1rem, 14vw, 3.2rem) !important;
-      }
-
-      .hero-copy p{
-        font-size:.94rem;
-      }
-
-      .eyebrow{
-        font-size:.68rem;
-      }
-
-      .big-number{
-        font-size:clamp(2rem, 15vw, 3.2rem);
-      }
-
-      .card h3,
-      .case-card h3,
-      .proof-card h3{
-        font-size:1.02rem;
-      }
-    }
-
-  
-    /* --- consolidated responsive fixes --- */
     @media (max-width: 1024px){
-      .hero-grid,
-      .case-hero,
-      .grid-2,
-      .grid-3,
-      .grid-4,
-      .contact-box{
-        grid-template-columns:1fr;
-      }
-
-      .hero{
-        padding:48px 0 24px;
-      }
-
-      .hero-grid{
-        min-height:auto;
-        gap:24px;
-      }
-
-      .hero-visual{
-        order:-1;
-        justify-content:center;
-      }
-
-      .portrait-wrap{
-        width:min(100%, 360px);
-        margin:0 auto;
-      }
-
-      .contact-actions{
-        justify-content:flex-start;
-      }
+      .hero-grid,.case-hero,.grid-2,.grid-3,.grid-4,.contact-box{grid-template-columns:1fr;}
+      .hero{padding:48px 0 24px;}
+      .hero-grid{min-height:auto;gap:24px;}
+      .hero-visual{order:-1;justify-content:center;}
+      .portrait-wrap{width:min(100%, 360px);margin:0 auto;}
+      .contact-actions{justify-content:flex-start;}
     }
 
     @media (max-width: 768px){
-      html, body{
-        overflow-x:hidden;
-      }
-
-      .container{
-        width:min(var(--max), calc(100% - 20px));
-      }
-
-      .topbar-inner{
-        min-height:auto;
-        padding:14px 0;
-        align-items:flex-start;
-        flex-direction:column;
-        gap:12px;
-      }
-
-      .brand{
-        font-size:.84rem;
-        letter-spacing:.12em;
-      }
-
-      .nav{
-        width:100%;
-        display:grid;
-        grid-template-columns:repeat(3, minmax(0,1fr));
-        gap:8px;
-        justify-content:stretch;
-      }
-
-      .nav a{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        min-height:40px;
-        padding:8px 10px;
-        border-radius:999px;
-        background:rgba(255,255,255,.04);
-        border:1px solid rgba(255,255,255,.08);
-        font-size:.82rem;
-        text-align:center;
-      }
-
-      .hero{
-        padding:28px 0 16px;
-      }
-
-      .eyebrow{
-        width:100%;
-        justify-content:center;
-        text-align:center;
-        margin-bottom:16px;
-        font-size:.72rem;
-      }
-
-      .hero-copy h1{
-        font-size:clamp(2.3rem, 12vw, 3.8rem) !important;
-        line-height:.95;
-        margin-bottom:14px;
-      }
-
-      .hero-copy p{
-        max-width:100%;
-        font-size:.96rem;
-        margin-bottom:20px;
-      }
-
-      .hero-actions,
-      .contact-actions{
-        display:grid;
-        grid-template-columns:1fr;
-        gap:10px;
-        width:100%;
-      }
-
-      .btn,
-      .contact-pill{
-        width:100%;
-        min-height:48px;
-      }
-
-      .inline-metrics,
-      .mini-stat-row,
-      .proof-gallery{
-        grid-template-columns:1fr;
-      }
-
-      .inline-metrics{
-        gap:10px;
-      }
-
-      section{
-        padding:28px 0;
-      }
-
-      .section-head{
-        margin-bottom:16px;
-      }
-
-      .section-head h2{
-        font-size:clamp(1.55rem, 8vw, 2.2rem);
-      }
-
-      .section-head p{
-        font-size:.94rem;
-      }
-
-      .card,
-      .case-card,
-      .proof-card,
-      .stat-card,
-      .contact-box{
-        padding:18px !important;
-        border-radius:22px;
-      }
-
-      .big-number{
-        font-size:clamp(2.25rem, 13vw, 3.6rem);
-      }
-
-      .company-links{
-        display:grid;
-        grid-template-columns:1fr;
-      }
-
-      .company-link{
-        width:100%;
-        justify-content:flex-start;
-      }
-
-      .account-head{
-        align-items:center;
-      }
-
-      .account-logo-wrap{
-        width:52px;
-        height:52px;
-        min-width:52px;
-        border-radius:14px;
-      }
-
-      .account-name{
-        font-size:1.08rem;
-      }
-
-      .portrait-wrap{
-        width:min(100%, 320px);
-        padding:12px;
-        border-radius:26px;
-      }
-
-      .portrait{
-        border-radius:18px;
-      }
-
-      .portrait-wrap::after{
-        inset:auto 12px 12px 12px;
-        border-radius:0 0 18px 18px;
-        height:90px;
-      }
-
-      .portrait-label{
-        left:22px;
-        right:22px;
-        bottom:18px;
-      }
-
-      .portrait-label span{
-        font-size:.82rem;
-      }
-
-      .wave-svg{
-        height:36%;
-        inset:auto -22% 8% -22%;
-      }
-
-      .page-waves{
-        opacity:.42;
-      }
+      html, body{overflow-x:hidden;}
+      .container{width:min(var(--max), calc(100% - 20px));}
+      .topbar-inner{min-height:auto;padding:14px 0;align-items:flex-start;flex-direction:column;gap:12px;}
+      .brand{font-size:.84rem;letter-spacing:.12em;}
+      .nav{width:100%;display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:8px;justify-content:stretch;}
+      .nav a{display:flex;align-items:center;justify-content:center;min-height:40px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.82rem;text-align:center;}
+      .hero{padding:28px 0 16px;}
+      .eyebrow{width:100%;justify-content:center;text-align:center;margin-bottom:16px;font-size:.72rem;}
+      .hero-copy h1{font-size:clamp(2.3rem, 12vw, 3.8rem) !important;line-height:.95;margin-bottom:14px;}
+      .hero-copy p{max-width:100%;font-size:.96rem;margin-bottom:20px;}
+      .hero-actions,.contact-actions{display:grid;grid-template-columns:1fr;gap:10px;width:100%;}
+      .btn,.contact-pill{width:100%;min-height:48px;}
+      .inline-metrics,.mini-stat-row,.proof-gallery{grid-template-columns:1fr;}
+      .inline-metrics{gap:10px;}
+      section{padding:28px 0;}
+      .section-head{margin-bottom:16px;}
+      .section-head h2{font-size:clamp(1.55rem, 8vw, 2.2rem);}
+      .section-head p{font-size:.94rem;}
+      .card,.case-card,.proof-card,.stat-card,.contact-box{padding:18px !important;border-radius:22px;}
+      .big-number{font-size:clamp(2.25rem, 13vw, 3.6rem);}
+      .company-links{display:grid;grid-template-columns:1fr;}
+      .company-link{width:100%;justify-content:flex-start;}
+      .account-head{align-items:center;}
+      .account-logo-wrap{width:52px;height:52px;min-width:52px;border-radius:14px;}
+      .account-name{font-size:1.08rem;}
+      .portrait-wrap{width:min(100%, 320px);padding:12px;border-radius:26px;}
+      .portrait{border-radius:18px;}
+      .portrait-wrap::after{inset:auto 12px 12px 12px;border-radius:0 0 18px 18px;height:90px;}
+      .portrait-label{left:22px;right:22px;bottom:18px;}
+      .portrait-label span{font-size:.82rem;}
+      .wave-svg{height:36%;inset:auto -22% 8% -22%;}
+      .page-waves{opacity:.42;}
     }
 
     @media (max-width: 430px){
-      .nav{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .hero-copy h1{
-        font-size:clamp(2rem, 13vw, 3rem) !important;
-      }
-
-      .eyebrow{
-        font-size:.68rem;
-      }
-
-      .big-number{
-        font-size:clamp(2rem, 14vw, 3rem);
-      }
+      .nav{grid-template-columns:repeat(2, minmax(0,1fr));}
+      .hero-copy h1{font-size:clamp(2rem, 13vw, 3rem) !important;}
+      .eyebrow{font-size:.68rem;}
+      .big-number{font-size:clamp(2rem, 14vw, 3rem);}
     }
 
+    .company-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:18px 0 18px;
+    }
+
+    .company-link{
+      min-height:44px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+      font-weight:700;
+      font-size:.9rem;
+      transition:transform .25s ease, background .25s ease, border-color .25s ease;
+      backdrop-filter:blur(10px);
+    }
+
+    .company-link:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.2);
+    }
+
+    .case-card{
+      background:
+        linear-gradient(180deg, rgba(7,9,13,.78), rgba(7,9,13,.9)),
+        url("bump-bg.jpg") center/cover no-repeat;
+      border:1px solid rgba(255,255,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .case-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(78,122,255,.12), transparent 22%),
+        linear-gradient(180deg, rgba(7,9,13,.08), rgba(7,9,13,.18));
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .case-card > *{position:relative;z-index:1;}
   </style>
 </head>
 <body>
@@ -1787,7 +1090,7 @@
           <span>for organic growth.</span>
         </h1>
         <p>
-          I turn high-hook moments into Instagram-ready short-form content for entertainment brands. My work for BUMP has generated <strong>300M+ organic views overall</strong>, including <strong>133.8M+ views in the last 90 days</strong> across two dedicated Instagram accounts.
+          I turn high-hook moments into Instagram-ready short-form content for entertainment brands. My work for BUMP has generated <strong>350M+ organic views overall</strong>, including <strong>133.8M+ views in the last 90 days</strong> across two dedicated Instagram accounts, and driven <strong>80K+ downloads</strong> for the BUMP app.
         </p>
 
         <div class="hero-actions">
@@ -1796,15 +1099,19 @@
         </div>
 
         <div class="inline-metrics">
-          <div class="inline-metric reveal stagger-2">
-            <strong class="countup" data-target="300" data-suffix="M+">300M+</strong>
+          <div class="inline-metric reveal stagger-1">
+            <strong class="countup" data-target="350" data-suffix="M+">350M+</strong>
             <span>Organic views generated for BUMP overall</span>
           </div>
-          <div class="inline-metric reveal stagger-3">
+          <div class="inline-metric reveal stagger-2">
             <strong class="countup" data-target="133.8" data-suffix="M+">133.8M+</strong>
             <span>Views in the last 90 days across 2 accounts</span>
           </div>
-          <div class="inline-metric reveal stagger-1">
+          <div class="inline-metric reveal stagger-3">
+            <strong class="countup" data-target="80" data-suffix="K+">80K+</strong>
+            <span>App downloads driven for BUMP</span>
+          </div>
+          <div class="inline-metric reveal stagger-4">
             <strong class="countup" data-target="2" data-suffix=" Pages">2 Pages</strong>
             <span>BUMP-focused Instagram accounts operated</span>
           </div>
@@ -1868,9 +1175,9 @@
             <span>BUMP</span>
           </div>
           <div class="label">Entertainment Platform</div>
-          <div class="big-number">300M+ <span>Organic views overall</span></div>
+          <div class="big-number">350M+ <span>Organic views overall</span></div>
           <p>
-            Created and published short-form promotional content for BUMP by selecting the most hook-worthy moments from full episodes and packaging them for Instagram audience growth.
+            Created and published short-form promotional content for BUMP by selecting the most hook-worthy moments from full episodes and packaging them for Instagram audience growth — driving over 80,000 app downloads in the process.
           </p>
 
           <div class="company-links">
@@ -1890,21 +1197,26 @@
             <li>Added subtitles and structured content for mobile-first viewing.</li>
             <li>Operated 2 Instagram accounts dedicated specifically to BUMP content promotion.</li>
             <li>Published clips designed to maximize curiosity, shares, and viewer response.</li>
+            <li>Contributed to 80K+ app downloads through organic content-driven audience conversion.</li>
           </ul>
         </article>
 
         <div class="stat-stack">
-          <div class="stat-card reveal stagger-3">
+          <div class="stat-card reveal stagger-2">
             <strong>133.8M+</strong>
             <span>Views in the last 90 days across both BUMP-focused Instagram accounts</span>
           </div>
-          <div class="stat-card reveal stagger-4">
+          <div class="stat-card reveal stagger-3">
             <strong class="countup" data-target="70.4" data-suffix="M">70.4M</strong>
             <span>90-day views on @dramahub_1m</span>
           </div>
-          <div class="stat-card reveal stagger-2">
+          <div class="stat-card reveal stagger-4">
             <strong class="countup" data-target="63.4" data-suffix="M">63.4M</strong>
             <span>90-day views on @dramacorner_1m</span>
+          </div>
+          <div class="stat-card reveal stagger-2">
+            <strong class="countup" data-target="80" data-suffix="K+">80K+</strong>
+            <span>App downloads driven for the BUMP platform</span>
           </div>
         </div>
       </div>
@@ -2043,7 +1355,7 @@
     <div class="container">
       <div class="contact-box">
         <div>
-          <h2>Let’s connect.</h2>
+          <h2>Let's connect.</h2>
           <p>
             I am interested in roles related to short-form content editing, organic Instagram growth, entertainment promotion, audience development, and platform-native content packaging.
           </p>
@@ -2060,7 +1372,6 @@
   <footer>
     Portfolio of <strong>Shishir Ghimire</strong> • Short-Form Editor & Instagram Growth Operator
   </footer>
-
 
   <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2098,7 +1409,6 @@
 
       const counters = document.querySelectorAll('.countup');
       const formatValue = (value, suffix) => {
-        const hasDecimal = String(value).includes('.');
         const num = Number(value);
         if (suffix.includes('M') || suffix.includes('K')) {
           return `${num.toFixed(num % 1 === 0 ? 0 : 1)}${suffix}`;
