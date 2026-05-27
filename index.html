@@ -48,6 +48,7 @@
       top:0;
       z-index:1000;
       background:rgba(7,9,13,.65);
+      -webkit-backdrop-filter:blur(18px);
       backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
@@ -197,6 +198,7 @@
       border-radius:22px;
       background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
+      -webkit-backdrop-filter:blur(12px);
       backdrop-filter:blur(12px);
       box-shadow:var(--shadow);
     }
@@ -228,6 +230,7 @@
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       border:1px solid rgba(255,255,255,.12);
       box-shadow:var(--shadow);
+      -webkit-backdrop-filter:blur(18px);
       backdrop-filter:blur(18px);
     }
 
@@ -248,6 +251,8 @@
       border-radius:26px;
       background:#151923;
       border:1px solid rgba(255,255,255,.08);
+      position:relative;
+      z-index:2;
     }
 
     .portrait-label{
@@ -305,6 +310,7 @@
       background:var(--panel);
       border:1px solid var(--line);
       border-radius:28px;
+      -webkit-backdrop-filter:blur(18px);
       backdrop-filter:blur(18px);
       box-shadow:var(--shadow);
     }
@@ -414,16 +420,18 @@
       font-size:.82rem;
     }
 
-    .proof-main{
-      margin:16px 0 14px;
+    /* ─── PROOF CARDS: images must render above backdrop-filter layers ─── */
+    .proof-card {
+      /* Avoid creating a new stacking context that traps child images */
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      background: rgba(255,255,255,0.06);
     }
 
-    .proof-main img, .proof-gallery img{
-      width:100%;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.08);
-      background:#11151d;
-      transition:.25s ease;
+    .proof-main{
+      margin:16px 0 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .proof-gallery{
@@ -431,10 +439,43 @@
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:12px;
       margin-top:12px;
+      position: relative;
+      z-index: 1;
     }
 
-    .proof-main img:hover, .proof-gallery img:hover, .card:hover, .case-card:hover, .proof-card:hover, .stat-card:hover{
-      transform:translateY(-3px);
+    /* Force GPU rasterisation so images paint on every mobile browser */
+    .proof-main img,
+    .proof-gallery img {
+      width:100%;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.08);
+      background:#11151d;
+      display: block;
+      position: relative;
+      z-index: 1;
+      /* GPU layer promotion — key fix for mobile WebKit / Blink */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      /* Smooth transition without fighting the stacking context */
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
+    }
+
+    .proof-main img:hover, .proof-gallery img:hover{
+      -webkit-transform: translateY(-4px) scale(1.015);
+      transform: translateY(-4px) scale(1.015);
+    }
+
+    /* Also ensure account logos render reliably */
+    .account-logo,
+    .bump-logo,
+    .bump-banner-logo,
+    .social-icon {
+      position: relative;
+      z-index: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
 
     .contact-box{
@@ -550,8 +591,6 @@
       z-index:1;
     }
 
-    .portrait, .portrait-label{position:relative; z-index:2}
-
     @keyframes floatPortrait{
       0%,100%{translate:0 0}
       50%{translate:0 -10px}
@@ -562,7 +601,7 @@
       100%{transform:translateX(310%) rotate(18deg)}
     }
 
-    .card, .case-card, .proof-card, .stat-card, .btn, .contact-pill, .inline-metric{
+    .card, .case-card, .stat-card, .btn, .contact-pill, .inline-metric{
       transition:
         transform .32s cubic-bezier(.2,.8,.2,1),
         border-color .25s ease,
@@ -572,7 +611,14 @@
       will-change:transform;
     }
 
-    .card:hover, .case-card:hover, .proof-card:hover, .stat-card:hover, .inline-metric:hover{
+    /* proof-card hover separate so it doesn't conflict with image rendering */
+    .proof-card{
+      transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .card:hover, .case-card:hover, .stat-card:hover, .inline-metric:hover{
       transform:translateY(-6px);
       border-color:rgba(255,255,255,.18);
       box-shadow:0 26px 90px rgba(0,0,0,.42);
@@ -586,15 +632,6 @@
     .btn-secondary:hover, .contact-pill.secondary:hover{
       transform:translateY(-3px);
       background:rgba(255,255,255,.09);
-    }
-
-    .proof-main img, .proof-gallery img{
-      transform:translateZ(0);
-      transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .25s ease;
-    }
-
-    .proof-main img:hover, .proof-gallery img:hover{
-      transform:translateY(-4px) scale(1.015);
     }
 
     .topbar{
@@ -667,20 +704,20 @@
     .wave-line{
       fill:none;
       stroke-linecap:round;
-      stroke-width:1.4;
-      stroke-dasharray:12 14;
-      animation:waveDrift 16s linear infinite;
+      stroke-width:1.25;
+      stroke-dasharray:10 18;
+      animation:waveDrift 30s linear infinite;
       opacity:.9;
     }
 
-    .wave-line.w2{animation-duration:20s; animation-direction:reverse; opacity:.72}
-    .wave-line.w3{animation-duration:24s; opacity:.5}
-    .wave-line.w4{animation-duration:28s; animation-direction:reverse; opacity:.38}
-    .wave-line.w5{animation-duration:18s; opacity:.62}
+    .wave-line.w2{animation-duration:38s; animation-direction:reverse; opacity:.72}
+    .wave-line.w3{animation-duration:44s; opacity:.5}
+    .wave-line.w4{animation-duration:48s; animation-direction:reverse; opacity:.38}
+    .wave-line.w5{animation-duration:34s; opacity:.62}
 
     @keyframes waveDrift{
       from{stroke-dashoffset:0}
-      to{stroke-dashoffset:-520}
+      to{stroke-dashoffset:-740}
     }
 
     .hero::after{
@@ -755,22 +792,8 @@
     .hero-waves{opacity:.42;}
     .wave-svg{filter:drop-shadow(0 0 22px rgba(74,144,255,.16));}
 
-    .wave-line{
-      stroke-width:1.25;
-      stroke-dasharray:10 18;
-      animation:waveDrift 30s linear infinite;
-    }
-    .wave-line.w2{animation-duration:38s}
-    .wave-line.w3{animation-duration:44s}
-    .wave-line.w4{animation-duration:48s}
-    .wave-line.w5{animation-duration:34s}
-
-    @keyframes waveDrift{
-      from{stroke-dashoffset:0}
-      to{stroke-dashoffset:-740}
-    }
-
-    .section-head, .card, .case-card, .proof-card, .stat-card, .contact-box, footer{
+    .section-head, .card, .case-card, .stat-card, .contact-box, footer{
+      -webkit-backdrop-filter:blur(16px);
       backdrop-filter:blur(16px);
     }
 
@@ -783,6 +806,7 @@
       border-radius:999px;
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
+      -webkit-backdrop-filter:blur(10px);
       backdrop-filter:blur(10px);
     }
 
@@ -914,9 +938,35 @@
       flex:1 1 auto;
     }
 
+    .company-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:18px 0 18px;
+    }
+
     .company-link{
-      gap:10px;
+      min-height:44px;
       padding:10px 16px 10px 12px;
+      gap:10px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      color:#fff;
+      font-weight:700;
+      font-size:.9rem;
+      transition:transform .25s ease, background .25s ease, border-color .25s ease;
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+    }
+
+    .company-link:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.12);
+      border-color:rgba(255,255,255,.2);
     }
 
     .social-icon-wrap{
@@ -938,6 +988,28 @@
       object-fit:cover;
       display:block;
     }
+
+    .case-card{
+      background:
+        linear-gradient(180deg, rgba(7,9,13,.78), rgba(7,9,13,.9)),
+        url("bump-bg.jpg") center/cover no-repeat;
+      border:1px solid rgba(255,255,255,.14);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .case-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(78,122,255,.12), transparent 22%),
+        linear-gradient(180deg, rgba(7,9,13,.08), rgba(7,9,13,.18));
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .case-card > *{position:relative;z-index:1;}
 
     .nav{row-gap:10px;}
     .hero-copy{width:100%;}
@@ -987,6 +1059,9 @@
       .portrait-label span{font-size:.82rem;}
       .wave-svg{height:36%;inset:auto -22% 8% -22%;}
       .page-waves{opacity:.42;}
+
+      /* On mobile, proof gallery stacks single column for better readability */
+      .proof-gallery{grid-template-columns:1fr;}
     }
 
     @media (max-width: 430px){
@@ -995,56 +1070,6 @@
       .eyebrow{font-size:.68rem;}
       .big-number{font-size:clamp(2rem, 14vw, 3rem);}
     }
-
-    .company-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin:18px 0 18px;
-    }
-
-    .company-link{
-      min-height:44px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      color:#fff;
-      font-weight:700;
-      font-size:.9rem;
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-      backdrop-filter:blur(10px);
-    }
-
-    .company-link:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.12);
-      border-color:rgba(255,255,255,.2);
-    }
-
-    .case-card{
-      background:
-        linear-gradient(180deg, rgba(7,9,13,.78), rgba(7,9,13,.9)),
-        url("bump-bg.jpg") center/cover no-repeat;
-      border:1px solid rgba(255,255,255,.14);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .case-card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 20% 12%, rgba(78,122,255,.12), transparent 22%),
-        linear-gradient(180deg, rgba(7,9,13,.08), rgba(7,9,13,.18));
-      pointer-events:none;
-      z-index:0;
-    }
-
-    .case-card > *{position:relative;z-index:1;}
   </style>
 </head>
 <body>
@@ -1120,7 +1145,7 @@
 
       <div class="hero-visual">
         <div class="portrait-wrap">
-          <img class="portrait" src="shishir.jpeg" alt="Portrait of Shishir Ghimire" />
+          <img class="portrait" src="shishir.jpeg" alt="Portrait of Shishir Ghimire" loading="eager" decoding="async" />
           <div class="portrait-label">
             <strong>Shishir Ghimire</strong>
             <span>Content strategist / editor focused on organic growth.</span>
@@ -1171,7 +1196,7 @@
       <div class="case-hero">
         <article class="case-card reveal stagger-1">
           <div class="bump-brand">
-            <img class="bump-logo" src="bump-logo.jpg" alt="BUMP logo" />
+            <img class="bump-logo" src="bump-logo.jpg" alt="BUMP logo" loading="lazy" decoding="async" />
             <span>BUMP</span>
           </div>
           <div class="label">Entertainment Platform</div>
@@ -1182,11 +1207,11 @@
 
           <div class="company-links">
             <a class="company-link" href="https://www.instagram.com/bump_drama/" target="_blank" rel="noopener noreferrer">
-              <span class="social-icon-wrap"><img class="social-icon" src="insta.png" alt="Instagram logo" /></span>
+              <span class="social-icon-wrap"><img class="social-icon" src="insta.png" alt="Instagram logo" loading="lazy" decoding="async" /></span>
               <span>BUMP Instagram</span>
             </a>
             <a class="company-link" href="https://www.youtube.com/@bump_drama" target="_blank" rel="noopener noreferrer">
-              <span class="social-icon-wrap"><img class="social-icon" src="yt.png" alt="YouTube logo" /></span>
+              <span class="social-icon-wrap"><img class="social-icon" src="yt.png" alt="YouTube logo" loading="lazy" decoding="async" /></span>
               <span>BUMP YouTube</span>
             </a>
           </div>
@@ -1237,7 +1262,7 @@
         <article class="card reveal stagger-2">
           <div class="account-head">
             <div class="account-logo-wrap">
-              <img class="account-logo" src="dramahub.jpg" alt="dramahub account logo" />
+              <img class="account-logo" src="dramahub.jpg" alt="dramahub account logo" loading="lazy" decoding="async" />
             </div>
             <div class="account-head-text">
               <h3>
@@ -1269,7 +1294,9 @@
 
         <article class="card reveal stagger-2">
           <div class="account-head">
-            <div class="account-logo-wrap"><img class="account-logo" src="dramacorner.jpg" alt="dramacorner account logo" /></div>
+            <div class="account-logo-wrap">
+              <img class="account-logo" src="dramacorner.jpg" alt="dramacorner account logo" loading="lazy" decoding="async" />
+            </div>
             <div class="account-head-text">
               <h3>
                 <a class="account-name" href="https://www.instagram.com/dramacorner_1m/" target="_blank" rel="noopener noreferrer">@dramacorner_1m</a>
@@ -1319,14 +1346,21 @@
           </p>
 
           <div class="proof-main">
-            <img src="dramahub-insights-90d.jpeg" alt="90-day insights for dramahub_1m showing 70,423,273 views" />
+            <img
+              src="dramahub-insights-90d.jpeg"
+              alt="90-day insights for dramahub_1m showing 70,423,273 views"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+            />
           </div>
 
           <div class="proof-gallery">
-            <img src="dramahub-profile.jpeg" alt="Profile screenshot of dramahub_1m" />
-            <img src="dramahub-grid.jpeg" alt="Reels grid screenshot of dramahub_1m" />
-            <img src="dramahub-top-1.jpeg" alt="Top reel screenshot from dramahub_1m showing 20.3M views" />
-            <img src="dramahub-top-2.jpeg" alt="Top reel screenshot from dramahub_1m showing 17.7M views" />
+            <img src="dramahub-profile.jpeg" alt="Profile screenshot of dramahub_1m" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramahub-grid.jpeg" alt="Reels grid screenshot of dramahub_1m" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramahub-top-1.jpeg" alt="Top reel screenshot from dramahub_1m showing 20.3M views" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramahub-top-2.jpeg" alt="Top reel screenshot from dramahub_1m showing 17.7M views" loading="lazy" decoding="async" width="400" height="500" />
           </div>
         </article>
 
@@ -1337,14 +1371,21 @@
           </p>
 
           <div class="proof-main">
-            <img src="dramacorner-insights-90d.png" alt="90-day insights for dramacorner_1m showing 63,412,330 views" />
+            <img
+              src="dramacorner-insights-90d.png"
+              alt="90-day insights for dramacorner_1m showing 63,412,330 views"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="600"
+            />
           </div>
 
           <div class="proof-gallery">
-            <img src="dramacorner-profile.jpeg" alt="Profile screenshot of dramacorner_1m" />
-            <img src="dramacorner-grid.jpeg" alt="Reels grid screenshot of dramacorner_1m" />
-            <img src="dramacorner-top-1.jpeg" alt="Top reel screenshot from dramacorner_1m showing 20M views" />
-            <img src="dramacorner-top-2.jpeg" alt="Top reel screenshot from dramacorner_1m showing 3M views" />
+            <img src="dramacorner-profile.jpeg" alt="Profile screenshot of dramacorner_1m" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramacorner-grid.jpeg" alt="Reels grid screenshot of dramacorner_1m" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramacorner-top-1.jpeg" alt="Top reel screenshot from dramacorner_1m showing 20M views" loading="lazy" decoding="async" width="400" height="500" />
+            <img src="dramacorner-top-2.jpeg" alt="Top reel screenshot from dramacorner_1m showing 3M views" loading="lazy" decoding="async" width="400" height="500" />
           </div>
         </article>
       </div>
@@ -1370,7 +1411,7 @@
   </section>
 
   <footer>
-    Portfolio of <strong>Shishir Ghimire</strong> • Short-Form Editor & Instagram Growth Operator
+    Portfolio of <strong>Shishir Ghimire</strong> • Short-Form Editor &amp; Instagram Growth Operator
   </footer>
 
   <script>
